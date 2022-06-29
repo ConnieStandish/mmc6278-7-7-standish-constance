@@ -70,6 +70,12 @@ var questionsArr = [
 ]
 
 //5. When page loads for first time user start quiz button must display with id-attribute of 'start-quiz'
+
+var quiz = document.getElementById('quiz')
+var startQuiz = document.createElement('button')
+startQuiz.setAttribute('id', 'start-quiz')
+quiz.appendChild(startQuiz)
+
 //6. For returning user previous score must display above start quiz button.
 //7. When start quiz button is clicked, program should select first question in questionsArr as well as possible answers.
 //8. Each question will have a thirty second timer, use setInterval and clearInterval to create timer.
