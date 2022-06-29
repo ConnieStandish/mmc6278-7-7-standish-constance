@@ -2,8 +2,73 @@
 
 //1. Create a 30 second multiple choice quiz similar to the game from Module 2
 //2. Use Javascript to manipulate the HTML
+
 //3. Create a questions array (questionsArr) variable to contain quiz data.
 //4. questionArr should contain at least five questions.
+
+var questionsArr = [
+    {
+        question: 'Which is NOT a Doctor Who enemy?',
+        answer: 'The Borg',
+        options: [
+            'Daleks',
+            'Cybermen', 
+            'Weeping Angels',
+            'The Borg',
+        ]
+    }, 
+    {
+        question: "What is the name of The Doctor's ship?",
+        answer: 'TARDIS',
+        options: [
+            'Millenium Falcon',
+            'Enterprise', 
+            'Serenity',
+            'TARDIS',
+        ]
+    }, 
+    {
+        question: 'What does TARDIS stand for?',
+        answer: 'Time and Relative Dimension in Space',
+        options: [
+            'Time and Relative Dimension in Space',
+            'Time and Relational Dimension in Space', 
+            'Truth and Rightousness Driven in Style',
+            'Tacos and Ramen Devoured in Space',
+        ]
+    },  
+    {
+        question: 'Over the years the show has had how many Doctors?',
+        answer: '13',
+        options: [
+            '9',
+            '11', 
+            '13',
+            '12',
+        ]
+    }, 
+    {
+        question: 'Which character was a Doctor Who companion?',
+        answer: 'Donna Noble',
+        options: [
+            'Donna Noble',
+            'Hoban "Wash" Washburne', 
+            'Michael Burnham',
+            'Jessica Cruz',
+        ]
+    }, 
+    {
+        question: 'Who played as the Ninth Doctor?',
+        answer: 'Christopher Eccleston',
+        options: [
+            'David Tennant',
+            'Matt Smith', 
+            'Peter Capaldi',
+            'Christopher Eccleston',
+        ]
+    }, 
+]
+
 //5. When page loads for first time user start quiz button must display with id-attribute of 'start-quiz'
 //6. For returning user previous score must display above start quiz button.
 //7. When start quiz button is clicked, program should select first question in questionsArr as well as possible answers.
