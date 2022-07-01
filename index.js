@@ -81,14 +81,15 @@ startQuiz.setAttribute('id', 'start-quiz')
 startQuiz.textContent = 'Start Quiz!'
 quiz.appendChild(startQuiz)
 
+var questions = document.createElement('p')
+var container = document.createElement('div')
+var aChoice = document.createElement('button')
+var bChoice = document.createElement('button')
+var cChoice = document.createElement('button')
+var dChoice = document.createElement('button')
+var timeRemaining =  document.createElement('p')
+
 function formatQuiz() {
-    var questions = document.createElement('p')
-    var container = document.createElement('div')
-    var aChoice = document.createElement('button')
-    var bChoice = document.createElement('button')
-    var cChoice = document.createElement('button')
-    var dChoice = document.createElement('button')
-    var timeRemaining =  document.createElement('p')
     quiz.appendChild(questions, timeRemaining)
     questions.appendChild(container)
     container.append(aChoice, bChoice, cChoice, dChoice)
@@ -98,7 +99,8 @@ startQuiz.onclick = function(e) {
     var numCorrect = 0
     startQuiz.style.display = 'none' 
     formatQuiz()
-    // for (let i = 0; i < questionsArr.length; i++) {
+    // for (var i = 0; i < questionsArr.length; i++) {
+    //     questions.textContent = questionsArr[i].question
     // }
 }
 
