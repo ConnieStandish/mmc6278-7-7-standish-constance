@@ -71,14 +71,34 @@ var questionsArr = [
 
 //5. When page loads for first time user start quiz button must display with id-attribute of 'start-quiz'
 
+//6. When start quiz button is clicked, program should select first question in questionsArr as well as possible answers.
+
+//7. Each question will have a thirty second timer, use setInterval and clearInterval to create timer.
+
 var quiz = document.getElementById('quiz')
 var startQuiz = document.createElement('button')
 startQuiz.setAttribute('id', 'start-quiz')
+startQuiz.textContent = 'Start Quiz!'
 quiz.appendChild(startQuiz)
 
-//6. For returning user previous score must display above start quiz button.
-//7. When start quiz button is clicked, program should select first question in questionsArr as well as possible answers.
-//8. Each question will have a thirty second timer, use setInterval and clearInterval to create timer.
+startQuiz.onclick = function(e) {
+    var numCorrect = 0
+    var questions = document.createElement('p')
+    var container = document.createElement('div')
+    var choices = document.createElement('button')
+    var timeRemaining =  document.createElement('p')
+    
+
+    for (let i = 0; i < questionsArr.length; i++) {
+        quiz.appendChild(questions)
+    }
+}
+
+//8. For returning user previous score must display above start quiz button.
+
+
+
+
 //9. Selecting an option or running out of time should cause program to immediately show the next question in questionsArr.
 //10. After last question is answered or time runs out, program will display start quiz button along with new score.
 //11. Calculate score by dividing the number of correct answers by the total number of questions. 
