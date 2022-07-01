@@ -81,17 +81,28 @@ startQuiz.setAttribute('id', 'start-quiz')
 startQuiz.textContent = 'Start Quiz!'
 quiz.appendChild(startQuiz)
 
-startQuiz.onclick = function(e) {
-    var numCorrect = 0
-    var questions = document.createElement('p')
+function formatQuiz() {
     var container = document.createElement('div')
+    var questions = document.createElement('p')
     var choices = document.createElement('button')
     var timeRemaining =  document.createElement('p')
+    quiz.appendChild(container)
+    container.appendChild(questions)
+    questions.textContent = Object.values(questionsArr)
+    
+}
+
+startQuiz.onclick = function(e) {
+    var numCorrect = 0
+    startQuiz.style.display = 'none' 
+    formatQuiz()
+    
+    
     
 
-    for (let i = 0; i < questionsArr.length; i++) {
-        quiz.appendChild(questions)
-    }
+    // for (let i = 0; i < questionsArr.length; i++) {
+    //     quiz.appendChild(questions)
+    // }
 }
 
 //8. For returning user previous score must display above start quiz button.
