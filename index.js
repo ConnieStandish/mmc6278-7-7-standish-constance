@@ -92,26 +92,17 @@ function formatQuiz() {
     quiz.appendChild(questions, timeRemaining)
     questions.appendChild(container)
     container.append(aChoice, bChoice, cChoice, dChoice)
-    
 }
 
 startQuiz.onclick = function(e) {
     var numCorrect = 0
     startQuiz.style.display = 'none' 
     formatQuiz()
-    
-    
-    
-
     // for (let i = 0; i < questionsArr.length; i++) {
-    //     quiz.appendChild(questions)
     // }
 }
 
 //8. For returning user previous score must display above start quiz button.
-
-
-
 
 //9. Selecting an option or running out of time should cause program to immediately show the next question in questionsArr.
 //10. After last question is answered or time runs out, program will display start quiz button along with new score.
