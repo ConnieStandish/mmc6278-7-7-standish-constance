@@ -82,13 +82,16 @@ startQuiz.textContent = 'Start Quiz!'
 quiz.appendChild(startQuiz)
 
 function formatQuiz() {
-    var container = document.createElement('div')
     var questions = document.createElement('p')
-    var choices = document.createElement('button')
+    var container = document.createElement('div')
+    var aChoice = document.createElement('button')
+    var bChoice = document.createElement('button')
+    var cChoice = document.createElement('button')
+    var dChoice = document.createElement('button')
     var timeRemaining =  document.createElement('p')
-    quiz.appendChild(container)
-    container.appendChild(questions)
-    questions.textContent = Object.values(questionsArr)
+    quiz.appendChild(questions, timeRemaining)
+    questions.appendChild(container)
+    container.append(aChoice, bChoice, cChoice, dChoice)
     
 }
 
