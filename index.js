@@ -106,11 +106,11 @@ function formatQuiz() {
         container.appendChild(choices)
     }
 
-    choices.addEventListener('click', function(e) {
-        var response = e.target
-        if (response === q.answer)
-        numCorrect++
-    })
+    // choices.addEventListener('click', function(e) {
+    //     var response
+    //     if (response === q.answer)
+    //     numCorrect++
+    // })
 
     quiz.appendChild(timeRemaining)
     timeRemaining.textContent = 30
@@ -125,8 +125,14 @@ function formatQuiz() {
 
 }
 
+function handleResponse(e) {
+    if (e.target.value === questionsArr[qIndex].answer) {
+        numCorrect++
+    }
+}
+
 startQuiz.onclick = function(e) {
-    startQuiz.style.display = 'none' 
+    // startQuiz.style.display = 'none' 
     formatQuiz()
 }
 
