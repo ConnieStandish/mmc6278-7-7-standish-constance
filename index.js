@@ -77,6 +77,7 @@ var questionsArr = [
 
 var quiz = document.getElementById('quiz')
 var qIndex = 0
+var intervalId
 // var intervalId
 
 var startQuiz = document.createElement('button')
@@ -85,11 +86,6 @@ startQuiz.textContent = 'Start Quiz!'
 quiz.appendChild(startQuiz)
 
 var questions = document.createElement('p')
-
-
-// var bChoice = document.createElement('button')
-// var cChoice = document.createElement('button')
-// var dChoice = document.createElement('button')
 var timeRemaining =  document.createElement('p')
 
 function formatQuiz() {
@@ -110,17 +106,13 @@ function formatQuiz() {
 
     quiz.appendChild(timeRemaining)
     timeRemaining.textContent = 30
-    // quiz.appendChild(questions, timeRemaining)
-    // questions.appendChild(container)
-    // container.append(aChoice, bChoice, cChoice, dChoice)
-}
-
-function startTime() {
-    var intervalId = setInterval(function(){
-    var seconds = Number(timeRemaining.textContent) - 1
-    if (seconds === -1) {
-        clearInterval(intervalId)
-    }
+    intervalId = setInterval(function(){
+        var seconds = Number(timeRemaining.textContent) - 1
+        if (seconds === -1) {
+            clearInterval(intervalId)
+        } else {
+            timeRemaining.textContent = seconds
+        }
     }, 1000)
 }
 
@@ -128,10 +120,6 @@ startQuiz.onclick = function(e) {
     var numCorrect = 0
     startQuiz.style.display = 'none' 
     formatQuiz()
-    startTime()
-    // for (var i = 0; i < questionsArr.length; i++) {
-    //     questions.textContent = questionsArr[i].question
-    // }
 }
 
 //8. For returning user previous score must display above start quiz button.
