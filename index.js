@@ -76,29 +76,59 @@ var questionsArr = [
 //7. Each question will have a thirty second timer, use setInterval and clearInterval to create timer.
 
 var quiz = document.getElementById('quiz')
+var qIndex = 0
+// var intervalId
+
 var startQuiz = document.createElement('button')
 startQuiz.setAttribute('id', 'start-quiz')
 startQuiz.textContent = 'Start Quiz!'
 quiz.appendChild(startQuiz)
 
 var questions = document.createElement('p')
-var container = document.createElement('div')
-var aChoice = document.createElement('button')
-var bChoice = document.createElement('button')
-var cChoice = document.createElement('button')
-var dChoice = document.createElement('button')
+
+
+// var bChoice = document.createElement('button')
+// var cChoice = document.createElement('button')
+// var dChoice = document.createElement('button')
 var timeRemaining =  document.createElement('p')
 
 function formatQuiz() {
-    quiz.appendChild(questions, timeRemaining)
-    questions.appendChild(container)
-    container.append(aChoice, bChoice, cChoice, dChoice)
+    quiz.textContent = ""
+    var q = questionsArr[qIndex]
+    questions.innerHTML = q.question
+    quiz.appendChild(questions)
+
+    var container = document.createElement('div')
+    for (let i = 0; i < q.options.length; i++) {
+        var element = q.options[i];
+        // console.log(element)
+        var choices = document.createElement('button')
+        choices.innerHTML = element
+        quiz.appendChild(container)
+        container.appendChild(choices)
+    }
+
+    quiz.appendChild(timeRemaining)
+    timeRemaining.textContent = 30
+    // quiz.appendChild(questions, timeRemaining)
+    // questions.appendChild(container)
+    // container.append(aChoice, bChoice, cChoice, dChoice)
+}
+
+function startTime() {
+    var intervalId = setInterval(function(){
+    var seconds = Number(timeRemaining.textContent) - 1
+    if (seconds === -1) {
+        clearInterval(intervalId)
+    }
+    }, 1000)
 }
 
 startQuiz.onclick = function(e) {
     var numCorrect = 0
     startQuiz.style.display = 'none' 
     formatQuiz()
+    startTime()
     // for (var i = 0; i < questionsArr.length; i++) {
     //     questions.textContent = questionsArr[i].question
     // }
