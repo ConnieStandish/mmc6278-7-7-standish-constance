@@ -97,10 +97,10 @@ var intervalId
 //Score Quiz Function
 function scoreQuiz() {
     console.log(numCorrect)
-    var percentage = numCorrect/questionsArr.length
+    var percentage = Math.round((numCorrect/questionsArr.length) * 100)
     console.log(percentage)
     quiz.innerHTML = ""
-    quiz.innerHTML = "Current Score " + percentage * 100 + '%'
+    quiz.innerHTML = "Current Score " + percentage + '%'
     localStorage.setItem('previous-score', percentage)
     qIndex = 0
     numCorrect = 0
@@ -123,7 +123,7 @@ function startGame() {
     var score = localStorage.getItem('previous-score')
     if (score) {
         var scoreEl = document.createElement('p')
-        scoreEl.innerHTML = 'Previous Score: ' + score * 100 + '%'
+        scoreEl.innerHTML = 'Previous Score: ' + score + '%'
         quiz.appendChild(scoreEl)
     }
     setStart()
