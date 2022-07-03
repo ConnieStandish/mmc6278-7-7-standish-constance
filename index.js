@@ -104,14 +104,15 @@ function formatQuiz() {
         choices.innerHTML = element
         quiz.appendChild(container)
         container.appendChild(choices)
+        
+        choices.addEventListener('click', function(e) {
+            if (element === q.answer)
+            numCorrect++
+        })
     }
+}
 
-    // choices.addEventListener('click', function(e) {
-    //     var response
-    //     if (response === q.answer)
-    //     numCorrect++
-    // })
-
+function startTimer() {
     quiz.appendChild(timeRemaining)
     timeRemaining.textContent = 30
     intervalId = setInterval(function(){
@@ -122,18 +123,12 @@ function formatQuiz() {
             timeRemaining.textContent = seconds
         }
     }, 1000)
-
-}
-
-function handleResponse(e) {
-    if (e.target.value === questionsArr[qIndex].answer) {
-        numCorrect++
-    }
 }
 
 startQuiz.onclick = function(e) {
     // startQuiz.style.display = 'none' 
     formatQuiz()
+    startTimer()
 }
 
 //9. For returning user previous score must display above start quiz button.
