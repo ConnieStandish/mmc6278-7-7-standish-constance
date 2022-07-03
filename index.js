@@ -101,14 +101,10 @@ function formatQuiz() {
         var element = q.options[i];
         // console.log(element)
         var choices = document.createElement('button')
+        choices.value = element
         choices.innerHTML = element
         quiz.appendChild(container)
         container.appendChild(choices)
-        
-        choices.addEventListener('click', function(e) {
-            if (element === q.answer)
-            numCorrect++
-        })
     }
 }
 
@@ -126,7 +122,6 @@ function startTimer() {
 }
 
 startQuiz.onclick = function(e) {
-    // startQuiz.style.display = 'none' 
     formatQuiz()
     startTimer()
 }
