@@ -1,10 +1,30 @@
 // Your code here
 
 //1. Create a 30 second multiple choice quiz similar to the game from Module 2
+
 //2. Use Javascript to manipulate the HTML
 
 //3. Create a questions array (questionsArr) variable to contain quiz data.
+
 //4. questionArr should contain at least five questions.
+
+//5. When page loads for first time user start quiz button must display with id-attribute of 'start-quiz'
+
+//6. When start quiz button is clicked, program should select first question in questionsArr as well as possible answers.
+
+//7. Each question will have a thirty second timer, use setInterval and clearInterval to create timer.
+
+//8. Selecting an option or running out of time should cause program to immediately show the next question in questionsArr.
+
+//9. For returning user previous score must display above start quiz button.
+
+//10. After last question is answered or time runs out, program will display start quiz button along with new score.
+
+//11. Calculate score by dividing the number of correct answers by the total number of questions. 
+
+//12. Round the score to the nearest whole number.
+
+//13. Use application JavaScript localStorage API to store user's most recent score under key previous-score after each game and retrieve score on page load. To ensure the score will display even if user navigates away from site. 
 
 var questionsArr = [
     {
@@ -69,30 +89,52 @@ var questionsArr = [
     }, 
 ]
 
-//5. When page loads for first time user start quiz button must display with id-attribute of 'start-quiz'
-
-//6. When start quiz button is clicked, program should select first question in questionsArr as well as possible answers.
-
-//7. Each question will have a thirty second timer, use setInterval and clearInterval to create timer.
-
-//8. Selecting an option or running out of time should cause program to immediately show the next question in questionsArr.
-
 var quiz = document.getElementById('quiz')
 var numCorrect = 0
 var qIndex = 0
 var intervalId
 
-var startQuiz = document.createElement('button')
-startQuiz.setAttribute('id', 'start-quiz')
-startQuiz.textContent = 'Start Quiz!'
-quiz.appendChild(startQuiz)
+//Score Quiz Function
+function scoreQuiz() {
+    console.log(numCorrect)
+    var percentage = numCorrect/questionsArr.length
+    console.log(percentage)
+    quiz.innerHTML = ""
+    quiz.innerHTML = "Current Score " + percentage * 100 + '%'
+    localStorage.setItem('previous-score', percentage)
+    qIndex = 0
+    numCorrect = 0
+    setStart()
+}
 
-var questions = document.createElement('p')
-var timeRemaining =  document.createElement('p')
+//Set Start Function
+function setStart() {
+    var startQuiz = document.createElement('button')
+    startQuiz.setAttribute('id', 'start-quiz')
+    startQuiz.textContent = 'Start Quiz!'
+    quiz.appendChild(startQuiz)
+    startQuiz.addEventListener ('click', function(e) {
+        formatQuiz()
+    })    
+}
+
+//Show start-quiz button on page load
+function startGame() {
+    var score = localStorage.getItem('previous-score')
+    if (score) {
+        var scoreEl = document.createElement('p')
+        scoreEl.innerHTML = 'Previous Score: ' + score * 100 + '%'
+        quiz.appendChild(scoreEl)
+    }
+    setStart()
+}
+
+startGame()
 
 function formatQuiz() {
     quiz.textContent = ""
     var q = questionsArr[qIndex]
+    var questions = document.createElement('p')
     questions.innerHTML = q.question
     quiz.appendChild(questions)
 
@@ -101,35 +143,43 @@ function formatQuiz() {
         var element = q.options[i];
         // console.log(element)
         var choices = document.createElement('button')
-        choices.value = element
         choices.innerHTML = element
-        quiz.appendChild(container)
         container.appendChild(choices)
+        choices.addEventListener('click', function(e) {
+            var response = (e.target.innerHTML)
+            if (response === q.answer) {
+                numCorrect++
+            }
+            endTime()
+        })
     }
+        quiz.appendChild(container)
+        var timeRemaining =  document.createElement('p')
+        timeRemaining.textContent = 30
+        timeRemaining.id = 'time'
+        quiz.appendChild(timeRemaining)
+        startTime()
 }
 
-function startTimer() {
-    quiz.appendChild(timeRemaining)
-    timeRemaining.textContent = 30
+function startTime() {
     intervalId = setInterval(function(){
+        var timeRemaining = document.getElementById('time')
         var seconds = Number(timeRemaining.textContent) - 1
         if (seconds === -1) {
-            clearInterval(intervalId)
+            endTime()
         } else {
             timeRemaining.textContent = seconds
         }
     }, 1000)
 }
 
-startQuiz.onclick = function(e) {
-    formatQuiz()
-    startTimer()
+function endTime() {
+    clearInterval(intervalId)
+    qIndex++
+    if (qIndex === questionsArr.length) {
+        scoreQuiz()
+    } else {
+        formatQuiz()
+    }
 }
 
-//9. For returning user previous score must display above start quiz button.
-
-
-//10. After last question is answered or time runs out, program will display start quiz button along with new score.
-//11. Calculate score by dividing the number of correct answers by the total number of questions. 
-//12. Round the score to the nearest whole number.
-//13. Use application JavaScript localStorage API to store user's most recent score under key previous-score after each game and retrieve score on page load. To ensure the score will display even if user navigates away from site. 
